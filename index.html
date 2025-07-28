@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FFD700',secondary:'#FFA500'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+.section-divider { background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, transparent 100%); height: 2px; }
+.gradient-text { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.card-hover { transition: all 0.3s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1); }
+.tab-active { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000000; }
+.interactive-table { border-collapse: separate; border-spacing: 0; }
+.interactive-table th { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000000; }
+.interactive-table td { border-bottom: 1px solid #333; transition: all 0.3s ease; }
+.interactive-table tr:hover td { background-color: #1a1a1a; }
+.jcb-highlight { background-color: rgba(255, 215, 0, 0.2); color: #FFD700; font-weight: 600; }
+.expandable-row { cursor: pointer; }
+.expandable-content { display: none; background-color: #111; }
+.expandable-content.show { display: table-row; }
+.radar-container { position: relative; height: 300px; }
+.positioning-map { position: relative; width: 100%; height: 400px; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border-radius: 12px; }
+.bubble { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+.bubble:hover { transform: scale(1.1); }
+.bubble.jcb { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000; }
+.bubble.competitor { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid #444; }
+</style>
+</head>
+<body class="bg-black text-white min-h-screen">
+<header class="bg-gradient-to-r from-gray-900 to-black border-b border-yellow-500/20">
+<div class="max-w-7xl mx-auto px-6 py-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-building-line text-black text-xl"></i>
+</div>
+<div>
+<h1 class="text-2xl font-bold gradient-text"><div class="font-['Pacifico'] text-2xl text-primary"><img src="images.png" height="60" width="80" /></div></h1>
+<p class="text-gray-400"></p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-gray-400">Rocester, ST14 5JP</p>
+<p class="text-sm text-primary">World Headquarters</p>
+</div>
+</div>
+</div>
+</header>
+<nav class="bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 border-b border-yellow-500/10">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex space-x-8 overflow-x-auto">
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="executive-summary">Executive Summary</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="market-analysis">Market Analysis</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="distribution-analysis">Distribution Analysis</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="innovation-opportunities">Innovation & Opportunities</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="competitive-analysis">Competitive Analysis</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="commercial-strategy">Commercial Strategy</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="product-development">Product Development</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="roadmap">5-Year Roadmap</button>
+<button class="nav-tab px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 border-transparent hover:border-primary transition-colors" data-section="kpis">KPIs & Conclusion</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<section id="executive-summary" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Executive Summary</h2>
+<div class="section-divider mb-6"></div>
+<div class="grid lg:grid-cols-2 gap-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Overview</h3>
+<p class="text-gray-300 mb-4">JCB's Materials Handling portfolio represents a critical growth opportunity in the global construction equipment market, valued at £47.2 billion and projected to grow at 6.8% CAGR through 2029. This comprehensive case study analyzes market dynamics, competitive positioning, and strategic opportunities for JCB's telehandlers, wheel loaders, and compact equipment.</p>
+<div class="bg-black/40 rounded-lg p-4 mb-4">
+<h4 class="font-semibold text-primary mb-2">Key Challenges Addressed</h4>
+<ul class="text-sm text-gray-300 space-y-1">
+<li>• Market share erosion in key European segments</li>
+<li>• Increasing competition from Chinese manufacturers</li>
+<li>• Demand for sustainable and autonomous solutions</li>
+<li>• Post-Brexit supply chain optimization</li>
+</ul>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Recommendations</h3>
+<div class="space-y-4">
+<div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg p-4 border-l-4 border-primary">
+<h4 class="font-semibold mb-2">Market Expansion</h4>
+<p class="text-sm text-gray-300">Target 15% market share growth through strategic acquisitions and enhanced dealer network expansion in emerging markets.</p>
+</div>
+<div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg p-4 border-l-4 border-primary">
+<h4 class="font-semibold mb-2">Innovation Leadership</h4>
+<p class="text-sm text-gray-300">Invest £120M in R&D for electric powertrains, autonomous systems, and IoT integration to maintain technological advantage.</p>
+</div>
+<div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg p-4 border-l-4 border-primary">
+<h4 class="font-semibold mb-2">Operational Excellence</h4>
+<p class="text-sm text-gray-300">Implement lean manufacturing and predictive maintenance to reduce costs by 12% while improving quality metrics.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 grid md:grid-cols-4 gap-4">
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary">£2.8B</div>
+<div class="text-sm text-gray-400">Revenue Target 2029</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary">18.5%</div>
+<div class="text-sm text-gray-400">Target Market Share</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary">35%</div>
+<div class="text-sm text-gray-400">Sustainability Improvement</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary">24</div>
+<div class="text-sm text-gray-400">New Product Launches</div>
+</div>
+</div>
+</div>
+</section>
+<section id="market-analysis" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Market Analysis</h2>
+<div class="section-divider mb-6"></div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Global Market Overview</h3>
+<div id="marketSizeChart" class="h-80 bg-black/40 rounded-lg"></div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Regional Market Share</h3>
+<div id="regionalChart" class="h-80 bg-black/40 rounded-lg"></div>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-6 mb-8">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-3">Construction Segment</h4>
+<div class="space-y-2">
+<div class="flex justify-between">
+<span class="text-sm">Market Size</span>
+<span class="text-primary font-semibold">£28.4B</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">Growth Rate</span>
+<span class="text-primary font-semibold">7.2%</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">JCB Share</span>
+<span class="text-primary font-semibold">14.8%</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-3">Agriculture Segment</h4>
+<div class="space-y-2">
+<div class="flex justify-between">
+<span class="text-sm">Market Size</span>
+<span class="text-primary font-semibold">£12.6B</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">Growth Rate</span>
+<span class="text-primary font-semibold">5.8%</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">JCB Share</span>
+<span class="text-primary font-semibold">22.3%</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-3">Rental Segment</h4>
+<div class="space-y-2">
+<div class="flex justify-between">
+<span class="text-sm">Market Size</span>
+<span class="text-primary font-semibold">£6.2B</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">Growth Rate</span>
+<span class="text-primary font-semibold">8.9%</span>
+</div>
+<div class="flex justify-between">
+<span class="text-sm">JCB Share</span>
+<span class="text-primary font-semibold">18.7%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Market Trends & Drivers</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold mb-4">Growth Drivers</h4>
+<ul class="space-y-3">
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Infrastructure Investment</span>
+<p class="text-sm text-gray-400">£650B global infrastructure spending planned through 2027</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Sustainability Regulations</span>
+<p class="text-sm text-gray-400">EU Stage V emissions and carbon neutrality targets driving demand</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Labor Shortage</span>
+<p class="text-sm text-gray-400">Automation and efficiency solutions increasingly critical</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold mb-4">Market Challenges</h4>
+<ul class="space-y-3">
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Supply Chain Disruption</span>
+<p class="text-sm text-gray-400">Semiconductor shortages and raw material price volatility</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Chinese Competition</span>
+<p class="text-sm text-gray-400">Aggressive pricing from XCMG, Sany, and Liugong</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+<div>
+<span class="font-medium">Economic Uncertainty</span>
+<p class="text-sm text-gray-400">Interest rate fluctuations affecting equipment financing</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Profitability Analysis</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="profitabilityChart" class="h-64 mb-4"></div>
+<div class="grid md:grid-cols-4 gap-4 text-center">
+<div>
+<div class="text-lg font-bold text-primary">18.5%</div>
+<div class="text-sm text-gray-400">Gross Margin</div>
+</div>
+<div>
+<div class="text-lg font-bold text-primary">12.3%</div>
+<div class="text-sm text-gray-400">EBITDA Margin</div>
+</div>
+<div>
+<div class="text-lg font-bold text-primary">8.7%</div>
+<div class="text-sm text-gray-400">Net Margin</div>
+</div>
+<div>
+<div class="text-lg font-bold text-primary">15.2%</div>
+<div class="text-sm text-gray-400">ROI</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="distribution-analysis" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Distribution Analysis</h2>
+<div class="section-divider mb-6"></div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Current Distribution Network</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span>Authorized Dealers</span>
+<span class="text-primary font-bold">2,847</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Service Centers</span>
+<span class="text-primary font-bold">1,923</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Parts Distribution Centers</span>
+<span class="text-primary font-bold">47</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Countries Covered</span>
+<span class="text-primary font-bold">150+</span>
+</div>
+</div>
+</div>
+<div class="mt-6">
+<h4 class="font-semibold text-primary mb-3">Distribution Efficiency Metrics</h4>
+<div id="distributionEfficiencyChart" class="h-64 bg-black/40 rounded-lg"></div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Geographic Coverage</h3>
+<div class="bg-black/40 rounded-lg p-6 h-80 flex items-center justify-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;">
+<div class="bg-black/80 rounded-lg p-4">
+<h4 class="text-primary font-semibold mb-2">Global Presence</h4>
+<p class="text-sm text-gray-300">JCB operates in 150+ countries with strategic regional hubs</p>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-4">
+<div class="bg-black/40 rounded-lg p-4">
+<h5 class="font-semibold text-primary mb-2">Europe</h5>
+<div class="text-sm space-y-1">
+<div class="flex justify-between">
+<span>Dealers</span>
+<span>1,247</span>
+</div>
+<div class="flex justify-between">
+<span>Coverage</span>
+<span>98.5%</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4">
+<h5 class="font-semibold text-primary mb-2">Asia-Pacific</h5>
+<div class="text-sm space-y-1">
+<div class="flex justify-between">
+<span>Dealers</span>
+<span>892</span>
+</div>
+<div class="flex justify-between">
+<span>Coverage</span>
+<span>85.2%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Distribution Strategy Framework</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-truck-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Direct Sales</h4>
+<p class="text-sm text-gray-400 mb-3">Large construction companies and fleet operators</p>
+<div class="text-xs text-primary">35% of total sales</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-store-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Dealer Network</h4>
+<p class="text-sm text-gray-400 mb-3">Authorized dealers for regional coverage</p>
+<div class="text-xs text-primary">55% of total sales</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-global-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Digital Channels</h4>
+<p class="text-sm text-gray-400 mb-3">E-commerce and digital platforms</p>
+<div class="text-xs text-primary">10% of total sales</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Supply Chain Optimization</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<h4 class="font-semibold mb-4">Current Challenges</h4>
+<ul class="space-y-2 text-sm">
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-red-500 rounded-full"></div>
+<span>Average delivery time: 14.2 days</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-red-500 rounded-full"></div>
+<span>Inventory holding cost: 8.5% of revenue</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-red-500 rounded-full"></div>
+<span>Parts availability: 92.3%</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Optimization Targets</h4>
+<ul class="space-y-2 text-sm">
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span>Target delivery time: 8.5 days</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span>Reduce inventory cost to: 6.2%</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span>Improve parts availability: 98.5%</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="innovation-opportunities" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Innovation & Commercial Opportunities</h2>
+<div class="section-divider mb-6"></div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Innovative Feature Development</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Electric Powertrain Technology</h4>
+<div class="space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-battery-charge-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">Advanced Battery Systems</div>
+<div class="text-sm text-gray-400">400V lithium-ion with 8-hour runtime</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-speed-up-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">Regenerative Braking</div>
+<div class="text-sm text-gray-400">15% energy recovery efficiency</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-flashlight-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">Fast Charging</div>
+<div class="text-sm text-gray-400">80% charge in 45 minutes</div>
+</div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
+<div class="text-sm font-medium">Investment Required: £45M</div>
+<div class="text-xs text-gray-400">Expected ROI: 285% over 5 years</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Autonomous Operation Systems</h4>
+<div class="space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-eye-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">Computer Vision</div>
+<div class="text-sm text-gray-400">360° object detection and recognition</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-robot-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">AI-Powered Navigation</div>
+<div class="text-sm text-gray-400">Machine learning path optimization</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-shield-check-line text-black text-sm"></i>
+</div>
+<div>
+<div class="font-medium">Safety Override</div>
+<div class="text-sm text-gray-400">Instant manual control capability</div>
+</div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
+<div class="text-sm font-medium">Investment Required: £62M</div>
+<div class="text-xs text-gray-400">Expected ROI: 340% over 5 years</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Commercial Opportunities by Industry</h3>
+<div class="space-y-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Construction Industry</h4>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Smart Construction Sites</h5>
+<p class="text-sm text-gray-400 mb-2">IoT-enabled equipment monitoring and predictive maintenance</p>
+<div class="text-xs text-primary">Market Size: £8.2B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Green Building Projects</h5>
+<p class="text-sm text-gray-400 mb-2">Zero-emission equipment for LEED certified projects</p>
+<div class="text-xs text-primary">Market Size: £12.7B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Urban Infrastructure</h5>
+<p class="text-sm text-gray-400 mb-2">Compact equipment for confined urban spaces</p>
+<div class="text-xs text-primary">Market Size: £15.3B</div>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Agriculture Industry</h4>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Precision Agriculture</h5>
+<p class="text-sm text-gray-400 mb-2">GPS-guided telehandlers for precise material placement</p>
+<div class="text-xs text-primary">Market Size: £4.8B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Sustainable Farming</h5>
+<p class="text-sm text-gray-400 mb-2">Electric equipment for organic and eco-friendly operations</p>
+<div class="text-xs text-primary">Market Size: £6.1B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Livestock Operations</h5>
+<p class="text-sm text-gray-400 mb-2">Specialized attachments for feed handling and barn management</p>
+<div class="text-xs text-primary">Market Size: £3.9B</div>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Rental Industry</h4>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Fleet Management</h5>
+<p class="text-sm text-gray-400 mb-2">Telematics and remote monitoring for rental optimization</p>
+<div class="text-xs text-primary">Market Size: £2.7B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Short-term Rentals</h5>
+<p class="text-sm text-gray-400 mb-2">Flexible rental models for project-based requirements</p>
+<div class="text-xs text-primary">Market Size: £1.8B</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4">
+<h5 class="font-medium mb-2">Maintenance Services</h5>
+<p class="text-sm text-gray-400 mb-2">Predictive maintenance packages for rental fleets</p>
+<div class="text-xs text-primary">Market Size: £1.4B</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Innovation ROI Analysis</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="innovationROIChart" class="h-64 mb-6"></div>
+<div class="grid md:grid-cols-4 gap-4">
+<div class="text-center">
+<div class="text-2xl font-bold text-primary">£127M</div>
+<div class="text-sm text-gray-400">Total R&D Investment</div>
+</div>
+<div class="text-center">
+<div class="text-2xl font-bold text-primary">18</div>
+<div class="text-sm text-gray-400">Months to Market</div>
+</div>
+<div class="text-center">
+<div class="text-2xl font-bold text-primary">312%</div>
+<div class="text-sm text-gray-400">Expected ROI</div>
+</div>
+<div class="text-center">
+<div class="text-2xl font-bold text-primary">£47.3B</div>
+<div class="text-sm text-gray-400">Addressable Market</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="competitive-analysis" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Competitive Analysis</h2>
+<div class="section-divider mb-6"></div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Competitor Comparison Matrix</h3>
+<div class="bg-black/40 rounded-lg p-6 overflow-x-auto">
+<table class="interactive-table w-full text-sm">
+<thead>
+<tr>
+<th class="p-3 text-left">Company</th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(1)">Market Share <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(2)">Product Range <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(3)">Price Position <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(4)">Technology <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(5)">Service Network <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(6)">Customer Satisfaction <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center cursor-pointer" onclick="sortTable(7)">Innovation Index <i class="ri-arrow-up-down-line ml-1"></i></th>
+<th class="p-3 text-center">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="expandable-row jcb-highlight" onclick="toggleRow('jcb-details')">
+<td class="p-3 font-semibold">JCB</td>
+<td class="p-3 text-center">16.8%</td>
+<td class="p-3 text-center">Comprehensive</td>
+<td class="p-3 text-center">Premium</td>
+<td class="p-3 text-center">Leading</td>
+<td class="p-3 text-center">Excellent</td>
+<td class="p-3 text-center">4.7/5</td>
+<td class="p-3 text-center">9.2/10</td>
+<td class="p-3 text-center">
+<button class="text-primary hover:text-secondary transition-colors">
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</td>
+</tr>
+<tr id="jcb-details" class="expandable-content">
+<td colspan="9" class="p-4">
+<div class="grid md:grid-cols-3 gap-4 text-sm">
+<div>
+<h5 class="font-semibold text-primary mb-2">Strengths</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Strong brand recognition in Europe</li>
+<li>• Innovative hydraulic systems</li>
+<li>• Comprehensive service network</li>
+<li>• High-quality manufacturing</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Key Products</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Loadall Telehandlers</li>
+<li>• Wheel Loaders</li>
+<li>• Compact Equipment</li>
+<li>• Agricultural Handlers</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Market Position</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• #2 in European telehandlers</li>
+<li>• #1 in UK construction equipment</li>
+<li>• Strong growth in Asia-Pacific</li>
+<li>• Premium positioning globally</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr class="expandable-row" onclick="toggleRow('caterpillar-details')">
+<td class="p-3 font-semibold">Caterpillar</td>
+<td class="p-3 text-center">22.4%</td>
+<td class="p-3 text-center">Extensive</td>
+<td class="p-3 text-center">Premium</td>
+<td class="p-3 text-center">Advanced</td>
+<td class="p-3 text-center">Excellent</td>
+<td class="p-3 text-center">4.5/5</td>
+<td class="p-3 text-center">8.8/10</td>
+<td class="p-3 text-center">
+<button class="text-primary hover:text-secondary transition-colors">
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</td>
+</tr>
+<tr id="caterpillar-details" class="expandable-content">
+<td colspan="9" class="p-4">
+<div class="grid md:grid-cols-3 gap-4 text-sm">
+<div>
+<h5 class="font-semibold text-primary mb-2">Strengths</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Global market leader</li>
+<li>• Extensive dealer network</li>
+<li>• Strong financial services</li>
+<li>• Advanced telematics</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Weaknesses</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• High price points</li>
+<li>• Limited electric options</li>
+<li>• Complex product lineup</li>
+<li>• Slower innovation cycles</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Threat Level</h5>
+<div class="text-red-400 font-semibold">HIGH</div>
+<p class="text-gray-400 mt-1">Dominant market position and resources</p>
+</div>
+</div>
+</td>
+</tr>
+<tr class="expandable-row" onclick="toggleRow('liebherr-details')">
+<td class="p-3 font-semibold">Liebherr</td>
+<td class="p-3 text-center">14.2%</td>
+<td class="p-3 text-center">Specialized</td>
+<td class="p-3 text-center">Premium</td>
+<td class="p-3 text-center">Advanced</td>
+<td class="p-3 text-center">Good</td>
+<td class="p-3 text-center">4.3/5</td>
+<td class="p-3 text-center">8.5/10</td>
+<td class="p-3 text-center">
+<button class="text-primary hover:text-secondary transition-colors">
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</td>
+</tr>
+<tr id="liebherr-details" class="expandable-content">
+<td colspan="9" class="p-4">
+<div class="grid md:grid-cols-3 gap-4 text-sm">
+<div>
+<h5 class="font-semibold text-primary mb-2">Strengths</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• German engineering quality</li>
+<li>• Strong in mining segment</li>
+<li>• Advanced hydraulics</li>
+<li>• Excellent build quality</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Weaknesses</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Limited product range</li>
+<li>• Smaller service network</li>
+<li>• Higher maintenance costs</li>
+<li>• Conservative innovation</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Threat Level</h5>
+<div class="text-yellow-400 font-semibold">MEDIUM</div>
+<p class="text-gray-400 mt-1">Strong in specific segments</p>
+</div>
+</div>
+</td>
+</tr>
+<tr class="expandable-row" onclick="toggleRow('manitou-details')">
+<td class="p-3 font-semibold">Manitou</td>
+<td class="p-3 text-center">11.7%</td>
+<td class="p-3 text-center">Focused</td>
+<td class="p-3 text-center">Mid-range</td>
+<td class="p-3 text-center">Good</td>
+<td class="p-3 text-center">Good</td>
+<td class="p-3 text-center">4.1/5</td>
+<td class="p-3 text-center">7.8/10</td>
+<td class="p-3 text-center">
+<button class="text-primary hover:text-secondary transition-colors">
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</td>
+</tr>
+<tr id="manitou-details" class="expandable-content">
+<td colspan="9" class="p-4">
+<div class="grid md:grid-cols-3 gap-4 text-sm">
+<div>
+<h5 class="font-semibold text-primary mb-2">Strengths</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Strong in agriculture</li>
+<li>• Competitive pricing</li>
+<li>• Good European presence</li>
+<li>• Focused product line</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Weaknesses</h5>
+<ul class="space-y-1 text-gray-300">
+<li>• Limited global reach</li>
+<li>• Smaller R&D budget</li>
+<li>• Less brand recognition</li>
+<li>• Narrow product range</li>
+</ul>
+</div>
+<div>
+<h5 class="font-semibold text-primary mb-2">Threat Level</h5>
+<div class="text-green-400 font-semibold">LOW</div>
+<p class="text-gray-400 mt-1">Regional competitor with limited scope</p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Feature Comparison Radar</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="featureRadarChart" class="radar-container"></div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Competitive Positioning Map</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="positioning-map">
+<div class="absolute top-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-400">High Quality</div>
+<div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-400">Low Quality</div>
+<div class="absolute left-2 top-1/2 transform -translate-y-1/2 -rotate-90 text-xs text-gray-400">Low Price</div>
+<div class="absolute right-2 top-1/2 transform -translate-y-1/2 rotate-90 text-xs text-gray-400">High Price</div>
+<div class="bubble jcb" style="top: 25%; right: 20%; width: 80px; height: 80px;" title="JCB - Premium Quality, High Price">JCB</div>
+<div class="bubble competitor" style="top: 20%; right: 15%; width: 90px; height: 90px;" title="Caterpillar - Highest Quality, Highest Price">CAT</div>
+<div class="bubble competitor" style="top: 30%; right: 25%; width: 70px; height: 70px;" title="Liebherr - High Quality, Premium Price">LH</div>
+<div class="bubble competitor" style="top: 45%; right: 35%; width: 60px; height: 60px;" title="Manitou - Good Quality, Mid Price">MT</div>
+<div class="bubble competitor" style="top: 65%; right: 50%; width: 50px; height: 50px;" title="XCMG - Lower Quality, Competitive Price">XCMG</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Market Share Trends</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="marketShareTrendsChart" class="h-64"></div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Technology Stack Comparison</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm">Electric Powertrains</span>
+<div class="flex space-x-2">
+<div class="w-4 h-4 bg-primary rounded-full" title="JCB - Leading"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="CAT - Developing"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="Liebherr - Limited"></div>
+<div class="w-4 h-4 bg-gray-800 rounded-full" title="Manitou - None"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm">Autonomous Systems</span>
+<div class="flex space-x-2">
+<div class="w-4 h-4 bg-primary rounded-full" title="JCB - Advanced"></div>
+<div class="w-4 h-4 bg-primary rounded-full" title="CAT - Advanced"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="Liebherr - Basic"></div>
+<div class="w-4 h-4 bg-gray-800 rounded-full" title="Manitou - None"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm">IoT Integration</span>
+<div class="flex space-x-2">
+<div class="w-4 h-4 bg-primary rounded-full" title="JCB - Comprehensive"></div>
+<div class="w-4 h-4 bg-primary rounded-full" title="CAT - Comprehensive"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="Liebherr - Moderate"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="Manitou - Basic"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm">Predictive Maintenance</span>
+<div class="flex space-x-2">
+<div class="w-4 h-4 bg-primary rounded-full" title="JCB - Advanced"></div>
+<div class="w-4 h-4 bg-primary rounded-full" title="CAT - Industry Leading"></div>
+<div class="w-4 h-4 bg-gray-600 rounded-full" title="Liebherr - Developing"></div>
+<div class="w-4 h-4 bg-gray-800 rounded-full" title="Manitou - Limited"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Brand Perception Analysis</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="brandPerceptionChart" class="h-64 mb-4"></div>
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-lg p-4 border border-primary/20">
+<div class="text-lg font-bold text-primary">JCB</div>
+<div class="text-2xl font-bold text-white mt-2">8.7</div>
+<div class="text-xs text-gray-400 mt-1">Premium Quality</div>
+</div>
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-lg p-4 border border-gray-700/20">
+<div class="text-lg font-bold text-gray-400">Caterpillar</div>
+<div class="text-2xl font-bold text-white mt-2">9.1</div>
+<div class="text-xs text-gray-400 mt-1">Market Leader</div>
+</div>
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-lg p-4 border border-gray-700/20">
+<div class="text-lg font-bold text-gray-400">Liebherr</div>
+<div class="text-2xl font-bold text-white mt-2">8.2</div>
+<div class="text-xs text-gray-400 mt-1">Engineering Excellence</div>
+</div>
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-lg p-4 border border-gray-700/20">
+<div class="text-lg font-bold text-gray-400">Manitou</div>
+<div class="text-2xl font-bold text-white mt-2">7.4</div>
+<div class="text-xs text-gray-400 mt-1">Specialized Focus</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="commercial-strategy" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Commercial Strategy</h2>
+<div class="section-divider mb-6"></div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Framework</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="space-y-6">
+<div class="border-l-4 border-primary pl-4">
+<h4 class="font-semibold mb-2">Market Leadership Strategy</h4>
+<p class="text-sm text-gray-400">Maintain premium positioning while expanding market share through innovation and strategic partnerships</p>
+</div>
+<div class="border-l-4 border-secondary pl-4">
+<h4 class="font-semibold mb-2">Value Proposition</h4>
+<p class="text-sm text-gray-400">Superior performance, reliability, and total cost of ownership through advanced technology and comprehensive service</p>
+</div>
+<div class="border-l-4 border-primary pl-4">
+<h4 class="font-semibold mb-2">Competitive Advantage</h4>
+<p class="text-sm text-gray-400">Integrated solutions combining equipment, technology, and services with strong brand heritage</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Revenue Optimization</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="revenueOptimizationChart" class="h-64"></div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Go-to-Market Strategy</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-target-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Market Segmentation</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Large Construction Companies (35%)</li>
+<li>• Agricultural Enterprises (28%)</li>
+<li>• Rental Companies (22%)</li>
+<li>• Small-Medium Contractors (15%)</li>
+</ul>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-route-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Channel Strategy</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Direct Sales (40%)</li>
+<li>• Authorized Dealers (45%)</li>
+<li>• Digital Channels (10%)</li>
+<li>• Strategic Partnerships (5%)</li>
+</ul>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4">
+<i class="ri-price-tag-line text-black text-xl"></i>
+</div>
+<h4 class="font-semibold mb-3">Pricing Strategy</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Premium Positioning</li>
+<li>• Value-Based Pricing</li>
+<li>• Flexible Financing</li>
+<li>• Service Bundling</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Customer Value Proposition</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<h4 class="font-semibold text-primary mb-4">Core Value Drivers</h4>
+<div class="space-y-4">
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mt-1">
+<i class="ri-time-line text-black text-sm"></i>
+</div>
+<div>
+<h5 class="font-medium">Productivity Enhancement</h5>
+<p class="text-sm text-gray-400">25% faster cycle times through advanced hydraulics and intelligent controls</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mt-1">
+<i class="ri-shield-check-line text-black text-sm"></i>
+</div>
+<div>
+<h5 class="font-medium">Reliability Assurance</h5>
+<p class="text-sm text-gray-400">99.2% uptime guarantee with predictive maintenance and rapid service response</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mt-1">
+<i class="ri-leaf-line text-black text-sm"></i>
+</div>
+<div>
+<h5 class="font-medium">Sustainability Leadership</h5>
+<p class="text-sm text-gray-400">35% reduction in emissions and fuel consumption compared to previous generation</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-4">Total Cost of Ownership</h4>
+<div id="tcoChart" class="h-48"></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Partnerships</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Technology Partnerships</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Autonomous Systems</span>
+<span class="text-xs bg-primary text-black px-2 py-1 rounded-full">Strategic</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Electric Powertrains</span>
+<span class="text-xs bg-primary text-black px-2 py-1 rounded-full">Joint Venture</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">IoT Platforms</span>
+<span class="text-xs bg-secondary text-black px-2 py-1 rounded-full">Partnership</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Market Partnerships</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Rental Companies</span>
+<span class="text-xs bg-primary text-black px-2 py-1 rounded-full">Preferred Supplier</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Construction Groups</span>
+<span class="text-xs bg-secondary text-black px-2 py-1 rounded-full">Fleet Agreements</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Agricultural Cooperatives</span>
+<span class="text-xs bg-primary text-black px-2 py-1 rounded-full">Volume Discounts</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="product-development" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">Cross-Functional Product Development</h2>
+<div class="section-divider mb-6"></div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Product Development Lifecycle</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="flex justify-between items-center mb-6">
+<div class="text-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-2">
+<i class="ri-lightbulb-line text-black text-lg"></i>
+</div>
+<div class="text-sm font-medium">Ideation</div>
+<div class="text-xs text-gray-400">3 months</div>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-secondary mx-4"></div>
+<div class="text-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-2">
+<i class="ri-draft-line text-black text-lg"></i>
+</div>
+<div class="text-sm font-medium">Design</div>
+<div class="text-xs text-gray-400">6 months</div>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-secondary mx-4"></div>
+<div class="text-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-2">
+<i class="ri-tools-line text-black text-lg"></i>
+</div>
+<div class="text-sm font-medium">Development</div>
+<div class="text-xs text-gray-400">12 months</div>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-secondary mx-4"></div>
+<div class="text-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-2">
+<i class="ri-test-tube-line text-black text-lg"></i>
+</div>
+<div class="text-sm font-medium">Testing</div>
+<div class="text-xs text-gray-400">4 months</div>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-secondary mx-4"></div>
+<div class="text-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-2">
+<i class="ri-rocket-line text-black text-lg"></i>
+</div>
+<div class="text-sm font-medium">Launch</div>
+<div class="text-xs text-gray-400">3 months</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Cross-Functional Team Structure</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="space-y-4">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-user-star-line text-black text-lg"></i>
+</div>
+<div>
+<div class="font-medium">Product Manager</div>
+<div class="text-sm text-gray-400">Strategy, roadmap, and stakeholder alignment</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-pencil-ruler-line text-black text-lg"></i>
+</div>
+<div>
+<div class="font-medium">Engineering Team</div>
+<div class="text-sm text-gray-400">Technical design and development</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-palette-line text-black text-lg"></i>
+</div>
+<div>
+<div class="font-medium">Design Team</div>
+<div class="text-sm text-gray-400">User experience and industrial design</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-line-chart-line text-black text-lg"></i>
+</div>
+<div>
+<div class="font-medium">Marketing Team</div>
+<div class="text-sm text-gray-400">Market research and go-to-market strategy</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+<i class="ri-factory-line text-black text-lg"></i>
+</div>
+<div>
+<div class="font-medium">Manufacturing</div>
+<div class="text-sm text-gray-400">Production planning and quality assurance</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Customer Value Delivery</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="customerValueChart" class="h-64"></div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Tools & Methodologies</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Agile Development</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Sprint-based development cycles</li>
+<li>• Regular stakeholder reviews</li>
+<li>• Continuous integration testing</li>
+<li>• Rapid prototyping and iteration</li>
+</ul>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Design Thinking</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Customer empathy mapping</li>
+<li>• Problem definition workshops</li>
+<li>• Ideation and brainstorming</li>
+<li>• Prototype testing with users</li>
+</ul>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Lean Startup</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Minimum viable product (MVP)</li>
+<li>• Build-measure-learn cycles</li>
+<li>• Customer validation testing</li>
+<li>• Pivot or persevere decisions</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Industry-Leading Features</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<h4 class="font-semibold text-primary mb-4">Technical Excellence</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Hydraulic Efficiency</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-20 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">95%</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Fuel Economy</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-22 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">92%</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Durability Rating</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-23 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">98%</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-4">Commercial Strategy</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Market Differentiation</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-21 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">88%</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Customer Satisfaction</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-22 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">94%</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Revenue Growth</span>
+<div class="flex items-center space-x-2">
+<div class="w-24 h-2 bg-gray-700 rounded-full">
+<div class="w-19 h-2 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+<span class="text-xs text-primary">85%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="roadmap" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">5-Year Strategic Roadmap</h2>
+<div class="section-divider mb-6"></div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Timeline</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="space-y-8">
+<div class="flex items-start space-x-6">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+<span class="text-black font-bold">2025</span>
+</div>
+<div class="w-0.5 h-16 bg-gradient-to-b from-primary to-secondary mt-2"></div>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-primary mb-2">Foundation & Innovation</h4>
+<ul class="text-sm text-gray-400 space-y-1">
+<li>• Launch electric telehandler series (3 models)</li>
+<li>• Implement IoT platform across product line</li>
+<li>• Establish autonomous systems testing facility</li>
+<li>• Expand dealer network by 15% in Asia-Pacific</li>
+</ul>
+</div>
+</div>
+<div class="flex items-start space-x-6">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+<span class="text-black font-bold">2026</span>
+</div>
+<div class="w-0.5 h-16 bg-gradient-to-b from-primary to-secondary mt-2"></div>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-primary mb-2">Market Expansion</h4>
+<ul class="text-sm text-gray-400 space-y-1">
+<li>• Enter North American compact equipment market</li>
+<li>• Launch subscription-based service model</li>
+<li>• Introduce semi-autonomous operation features</li>
+<li>• Achieve 18% market share in European telehandlers</li>
+</ul>
+</div>
+</div>
+<div class="flex items-start space-x-6">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+<span class="text-black font-bold">2027</span>
+</div>
+<div class="w-0.5 h-16 bg-gradient-to-b from-primary to-secondary mt-2"></div>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-primary mb-2">Technology Leadership</h4>
+<ul class="text-sm text-gray-400 space-y-1">
+<li>• Deploy fully autonomous construction site solutions</li>
+<li>• Launch hydrogen fuel cell prototype</li>
+<li>• Implement AI-powered predictive maintenance</li>
+<li>• Establish strategic partnership with tech giants</li>
+</ul>
+</div>
+</div>
+<div class="flex items-start space-x-6">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+<span class="text-black font-bold">2028</span>
+</div>
+<div class="w-0.5 h-16 bg-gradient-to-b from-primary to-secondary mt-2"></div>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-primary mb-2">Global Dominance</h4>
+<ul class="text-sm text-gray-400 space-y-1">
+<li>• Achieve carbon-neutral manufacturing</li>
+<li>• Launch integrated construction ecosystem platform</li>
+<li>• Expand into emerging markets (Africa, South America)</li>
+<li>• Reach £2.5B annual revenue milestone</li>
+</ul>
+</div>
+</div>
+<div class="flex items-start space-x-6">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+<span class="text-black font-bold">2029</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-primary mb-2">Market Leadership</h4>
+<ul class="text-sm text-gray-400 space-y-1">
+<li>• Become #1 global materials handling equipment provider</li>
+<li>• Launch next-generation autonomous fleet management</li>
+<li>• Achieve 25% market share in key segments</li>
+<li>• Complete transition to sustainable product portfolio</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Investment Allocation</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="investmentAllocationChart" class="h-64"></div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Revenue Projection</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div id="revenueProjectionChart" class="h-64"></div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Milestones</h3>
+<div class="grid md:grid-cols-4 gap-4">
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary mb-2">24</div>
+<div class="text-sm text-gray-400 mb-1">New Products</div>
+<div class="text-xs text-gray-500">Launched by 2029</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary mb-2">£127M</div>
+<div class="text-sm text-gray-400 mb-1">R&D Investment</div>
+<div class="text-xs text-gray-500">5-year total</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary mb-2">45</div>
+<div class="text-sm text-gray-400 mb-1">New Markets</div>
+<div class="text-xs text-gray-500">Geographic expansion</div>
+</div>
+<div class="bg-black/40 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold text-primary mb-2">3,500</div>
+<div class="text-sm text-gray-400 mb-1">New Jobs</div>
+<div class="text-xs text-gray-500">Global workforce growth</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Risk Mitigation Strategy</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="grid md:grid-cols-3 gap-6">
+<div>
+<h4 class="font-semibold text-red-400 mb-3">High Risk</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Supply chain disruption</li>
+<li>• Economic recession impact</li>
+<li>• Technology obsolescence</li>
+</ul>
+<div class="mt-3 text-xs text-gray-500">Mitigation: Diversified suppliers, flexible manufacturing, continuous innovation</div>
+</div>
+<div>
+<h4 class="font-semibold text-yellow-400 mb-3">Medium Risk</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Regulatory changes</li>
+<li>• Currency fluctuations</li>
+<li>• Talent acquisition</li>
+</ul>
+<div class="mt-3 text-xs text-gray-500">Mitigation: Regulatory monitoring, hedging strategies, talent development programs</div>
+</div>
+<div>
+<h4 class="font-semibold text-green-400 mb-3">Low Risk</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• Brand reputation</li>
+<li>• Customer loyalty</li>
+<li>• Market position</li>
+</ul>
+<div class="mt-3 text-xs text-gray-500">Mitigation: Continuous quality improvement, customer engagement, market monitoring</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="kpis" class="section mb-16">
+<div class="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl p-8 border border-yellow-500/20">
+<h2 class="text-3xl font-bold gradient-text mb-6">KPIs & Conclusion</h2>
+<div class="section-divider mb-6"></div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Key Performance Indicators</h3>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-black/40 rounded-lg p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-line-chart-line text-black text-2xl"></i>
+</div>
+<div class="text-2xl font-bold text-primary mb-2">£2.8B</div>
+<div class="text-sm text-gray-400 mb-1">Revenue Target 2029</div>
+<div class="text-xs text-green-400">+85% growth</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-pie-chart-line text-black text-2xl"></i>
+</div>
+<div class="text-2xl font-bold text-primary mb-2">25.3%</div>
+<div class="text-sm text-gray-400 mb-1">Market Share Target</div>
+<div class="text-xs text-green-400">+8.5% increase</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-customer-service-line text-black text-2xl"></i>
+</div>
+<div class="text-2xl font-bold text-primary mb-2">4.8/5</div>
+<div class="text-sm text-gray-400 mb-1">Customer Satisfaction</div>
+<div class="text-xs text-green-400">+0.1 improvement</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-leaf-line text-black text-2xl"></i>
+</div>
+<div class="text-2xl font-bold text-primary mb-2">-35%</div>
+<div class="text-sm text-gray-400 mb-1">Carbon Footprint</div>
+<div class="text-xs text-green-400">Reduction target</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Performance Dashboard</h4>
+<div id="kpiDashboard" class="h-80"></div>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Success Metrics by Category</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Financial Metrics</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Revenue Growth</span>
+<span class="text-primary font-semibold">15.2% CAGR</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">EBITDA Margin</span>
+<span class="text-primary font-semibold">18.5%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">ROI</span>
+<span class="text-primary font-semibold">22.3%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Cash Flow</span>
+<span class="text-primary font-semibold">£420M</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Operational Metrics</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">Production Efficiency</span>
+<span class="text-primary font-semibold">94.5%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Quality Rating</span>
+<span class="text-primary font-semibold">99.2%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">On-time Delivery</span>
+<span class="text-primary font-semibold">96.8%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Uptime Guarantee</span>
+<span class="text-primary font-semibold">99.1%</span>
+</div>
+</div>
+</div>
+<div class="bg-black/40 rounded-lg p-6">
+<h4 class="font-semibold text-primary mb-4">Innovation Metrics</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm">R&D Investment</span>
+<span class="text-primary font-semibold">8.5% of revenue</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Patent Applications</span>
+<span class="text-primary font-semibold">47 annually</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Time to Market</span>
+<span class="text-primary font-semibold">18 months</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm">Innovation Index</span>
+<span class="text-primary font-semibold">9.2/10</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-primary mb-4">Strategic Conclusion</h3>
+<div class="bg-black/40 rounded-lg p-6">
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<h4 class="font-semibold text-primary mb-4">Key Success Factors</h4>
+<ul class="text-sm text-gray-300 space-y-2">
+<li class="flex items-start space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<span><strong>Innovation Leadership:</strong> Continuous investment in electric, autonomous, and IoT technologies positions JCB as the industry pioneer.</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<span><strong>Market Expansion:</strong> Strategic entry into high-growth segments and emerging markets drives revenue diversification.</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<span><strong>Operational Excellence:</strong> Lean manufacturing and supply chain optimization ensure competitive cost structure.</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+<span><strong>Customer Centricity:</strong> Cross-functional product development ensures solutions meet real market needs.</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-4">Strategic Outlook</h4>
+<p class="text-sm text-gray-300 mb-4">JCB's Materials Handling portfolio is positioned to capitalize on the £47.2B global market opportunity through a comprehensive strategy that balances innovation, operational excellence, and market expansion. The 5-year roadmap delivers sustainable competitive advantage while addressing evolving customer needs in construction, agriculture, and rental industries.</p>
+<div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-4">
+<div class="text-sm font-semibold text-primary mb-2">Expected Outcomes by 2029:</div>
+<ul class="text-xs text-gray-400 space-y-1">
+<li>• Global market leadership in materials handling equipment</li>
+<li>• £2.8B annual revenue with 15.2% CAGR growth</li>
+<li>• 25.3% market share across key segments</li>
+<li>• Carbon-neutral manufacturing and sustainable product portfolio</li>
+<li>• Industry-leading customer satisfaction and brand loyalty</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gradient-to-r from-gray-900 to-black border-t border-yellow-500/20 mt-16">
+<div class="max-w-7xl mx-auto px-6 py-8">
+<div class="text-center">
+<p class="text-gray-400 text-sm"></p>
+<p class="text-gray-500 text-xs mt-2"></p>
+</div>
+</div>
+</footer>
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const navTabs = document.querySelectorAll('.nav-tab');
+const sections = document.querySelectorAll('.section');
+navTabs.forEach(tab => {
+tab.addEventListener('click', function() {
+const targetSection = this.getAttribute('data-section');
+navTabs.forEach(t => {
+t.classList.remove('border-primary', 'text-primary');
+t.classList.add('border-transparent', 'text-gray-400');
+});
+this.classList.remove('border-transparent', 'text-gray-400');
+this.classList.add('border-primary', 'text-primary');
+document.getElementById(targetSection).scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+});
+});
+navTabs[0].classList.add('border-primary', 'text-primary');
+});
+</script>
+<script id="charts-script">
+document.addEventListener('DOMContentLoaded', function() {
+const marketSizeChart = echarts.init(document.getElementById('marketSizeChart'));
+const marketSizeOption = {
+animation: false,
+title: { text: 'Global Market Size (£B)', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: { data: ['Market Size', 'JCB Revenue'], textStyle: { color: '#fff' } },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937' } },
+series: [
+{ name: 'Market Size', type: 'line', data: [38.2, 41.5, 44.8, 47.2, 50.1, 53.4, 57.2, 61.5, 66.3, 71.8], smooth: true, lineStyle: { color: 'rgba(87, 181, 231, 1)' }, areaStyle: { color: 'rgba(87, 181, 231, 0.1)' } },
+{ name: 'JCB Revenue', type: 'line', data: [1.2, 1.35, 1.48, 1.62, 1.78, 1.96, 2.18, 2.42, 2.69, 2.8], smooth: true, lineStyle: { color: 'rgba(251, 191, 114, 1)' }, areaStyle: { color: 'rgba(251, 191, 114, 0.1)' } }
+]
+};
+marketSizeChart.setOption(marketSizeOption);
+const regionalChart = echarts.init(document.getElementById('regionalChart'));
+const regionalOption = {
+animation: false,
+title: { text: 'Regional Market Share', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'item', backgroundColor: 'rgba(255,255,255,0.9)' },
+series: [{
+type: 'pie',
+radius: ['40%', '70%'],
+data: [
+{ value: 35.2, name: 'Europe' },
+{ value: 28.7, name: 'North America' },
+{ value: 22.1, name: 'Asia-Pacific' },
+{ value: 8.3, name: 'Latin America' },
+{ value: 5.7, name: 'Others' }
+],
+itemStyle: {
+color: function(params) {
+const colors = ['rgba(87, 181, 231, 1)', 'rgba(141, 211, 199, 1)', 'rgba(251, 191, 114, 1)', 'rgba(252, 141, 98, 1)', 'rgba(200, 200, 200, 1)'];
+return colors[params.dataIndex];
+},
+borderRadius: 8
+}
+}]
+};
+regionalChart.setOption(regionalOption);
+const profitabilityChart = echarts.init(document.getElementById('profitabilityChart'));
+const profitabilityOption = {
+animation: false,
+title: { text: 'Profitability Trends', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: { data: ['Gross Margin %', 'EBITDA %', 'Net Margin %'], textStyle: { color: '#fff' } },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937' } },
+series: [
+{ name: 'Gross Margin %', type: 'bar', data: [16.2, 17.1, 17.8, 18.2, 18.5], itemStyle: { color: 'rgba(87, 181, 231, 1)', borderRadius: [4, 4, 0, 0] } },
+{ name: 'EBITDA %', type: 'bar', data: [10.5, 11.2, 11.8, 12.1, 12.3], itemStyle: { color: 'rgba(141, 211, 199, 1)', borderRadius: [4, 4, 0, 0] } },
+{ name: 'Net Margin %', type: 'bar', data: [7.2, 7.8, 8.2, 8.5, 8.7], itemStyle: { color: 'rgba(251, 191, 114, 1)', borderRadius: [4, 4, 0, 0] } }
+]
+};
+profitabilityChart.setOption(profitabilityOption);
+const distributionEfficiencyChart = echarts.init(document.getElementById('distributionEfficiencyChart'));
+const distributionOption = {
+animation: false,
+title: { text: 'Distribution Efficiency', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+radar: {
+indicator: [
+{ name: 'Delivery Speed', max: 100 },
+{ name: 'Cost Efficiency', max: 100 },
+{ name: 'Coverage', max: 100 },
+{ name: 'Reliability', max: 100 },
+{ name: 'Customer Satisfaction', max: 100 }
+],
+axisName: { color: '#fff' }
+},
+series: [{
+type: 'radar',
+data: [{ value: [78, 85, 92, 88, 91], name: 'Current Performance', lineStyle: { color: 'rgba(87, 181, 231, 1)' }, areaStyle: { color: 'rgba(87, 181, 231, 0.1)' } }]
+}]
+};
+distributionEfficiencyChart.setOption(distributionOption);
+const innovationROIChart = echarts.init(document.getElementById('innovationROIChart'));
+const innovationOption = {
+animation: false,
+title: { text: 'Innovation ROI Analysis', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: { data: ['Investment', 'Expected Return'], textStyle: { color: '#fff' } },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['Electric Systems', 'Autonomous Tech', 'IoT Platform', 'Predictive Maintenance'], axisLabel: { color: '#1f2937', rotate: 45 } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937' } },
+series: [
+{ name: 'Investment', type: 'bar', data: [45, 62, 15, 8], itemStyle: { color: 'rgba(252, 141, 98, 1)', borderRadius: [4, 4, 0, 0] } },
+{ name: 'Expected Return', type: 'bar', data: [128, 211, 47, 28], itemStyle: { color: 'rgba(87, 181, 231, 1)', borderRadius: [4, 4, 0, 0] } }
+]
+};
+innovationROIChart.setOption(innovationOption);
+const featureRadarChart = echarts.init(document.getElementById('featureRadarChart'));
+const featureRadarOption = {
+animation: false,
+title: { text: 'Feature Comparison', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'item', backgroundColor: 'rgba(255,255,255,0.9)' },
+radar: {
+indicator: [
+{ name: 'Performance', max: 10 },
+{ name: 'Fuel Efficiency', max: 10 },
+{ name: 'Safety Features', max: 10 },
+{ name: 'Technology', max: 10 },
+{ name: 'Service', max: 10 },
+{ name: 'Price Competitiveness', max: 10 }
+],
+axisName: { color: '#fff' }
+},
+series: [{
+type: 'radar',
+data: [
+{ value: [9.2, 8.8, 9.5, 9.2, 9.1, 7.5], name: 'JCB', lineStyle: { color: '#FFD700' }, areaStyle: { color: 'rgba(255, 215, 0, 0.1)' } },
+{ value: [8.8, 8.2, 8.9, 8.8, 8.7, 6.8], name: 'Caterpillar', lineStyle: { color: '#888' }, areaStyle: { color: 'rgba(136, 136, 136, 0.1)' } },
+{ value: [8.5, 7.9, 8.3, 8.5, 7.8, 7.2], name: 'Liebherr', lineStyle: { color: '#666' }, areaStyle: { color: 'rgba(102, 102, 102, 0.1)' } }
+]
+}]
+};
+featureRadarChart.setOption(featureRadarOption);
+const marketShareTrendsChart = echarts.init(document.getElementById('marketShareTrendsChart'));
+const marketShareTrendsOption = {
+animation: false,
+title: { text: 'Market Share Evolution', textStyle: { color: '#FFD700', fontSize:  14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: { data: ['JCB', 'Caterpillar', 'Liebherr', 'Manitou'], textStyle: { color: '#fff' } },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937', formatter: '{value}%' } },
+series: [
+{ name: 'JCB', type: 'line', data: [15.2, 15.8, 16.1, 16.5, 16.8], smooth: true, lineStyle: { color: '#FFD700' } },
+{ name: 'Caterpillar', type: 'line', data: [23.1, 22.8, 22.6, 22.5, 22.4], smooth: true, lineStyle: { color: '#888' } },
+{ name: 'Liebherr', type: 'line', data: [14.8, 14.5, 14.3, 14.2, 14.2], smooth: true, lineStyle: { color: '#666' } },
+{ name: 'Manitou', type: 'line', data: [12.2, 11.9, 11.8, 11.7, 11.7], smooth: true, lineStyle: { color: '#444' } }
+]
+};
+marketShareTrendsChart.setOption(marketShareTrendsOption);
+const brandPerceptionChart = echarts.init(document.getElementById('brandPerceptionChart'));
+const brandPerceptionOption = {
+animation: false,
+title: { text: 'Brand Perception Score', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['JCB', 'Caterpillar', 'Liebherr', 'Manitou'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', max: 10, axisLabel: { color: '#1f2937' } },
+series: [{
+type: 'bar',
+data: [8.7, 9.1, 8.2, 7.4],
+itemStyle: {
+color: function(params) {
+const colors = ['#FFD700', '#888', '#666', '#444'];
+return colors[params.dataIndex];
+},
+borderRadius: [4, 4, 0, 0]
+}
+}]
+};
+brandPerceptionChart.setOption(brandPerceptionOption);
+const revenueOptimizationChart = echarts.init(document.getElementById('revenueOptimizationChart'));
+const revenueOptimizationOption = {
+animation: false,
+title: { text: 'Revenue Mix Optimization', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'item', backgroundColor: 'rgba(255,255,255,0.9)' },
+series: [{
+type: 'pie',
+radius: ['30%', '60%'],
+data: [
+{ value: 45, name: 'Equipment Sales' },
+{ value: 25, name: 'Service & Parts' },
+{ value: 18, name: 'Rental Services' },
+{ value: 12, name: 'Digital Solutions' }
+],
+itemStyle: {
+color: function(params) {
+const colors = ['#FFD700', '#FFA500', '#87B5E7', '#8DD3C7'];
+return colors[params.dataIndex];
+},
+borderRadius: 6
+}
+}]
+};
+revenueOptimizationChart.setOption(revenueOptimizationOption);
+const tcoChart = echarts.init(document.getElementById('tcoChart'));
+const tcoOption = {
+animation: false,
+title: { text: 'Total Cost of Ownership', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: { data: ['JCB', 'Competitor Average'], textStyle: { color: '#fff' } },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['Purchase', 'Fuel', 'Maintenance', 'Downtime', 'Resale'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937' } },
+series: [
+{ name: 'JCB', type: 'bar', data: [100, 85, 78, 65, 92], itemStyle: { color: '#FFD700', borderRadius: [4, 4, 0, 0] } },
+{ name: 'Competitor Average', type: 'bar', data: [95, 100, 100, 100, 85], itemStyle: { color: '#888', borderRadius: [4, 4, 0, 0] } }
+]
+};
+tcoChart.setOption(tcoOption);
+const customerValueChart = echarts.init(document.getElementById('customerValueChart'));
+const customerValueOption = {
+animation: false,
+title: { text: 'Customer Value Creation', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+radar: {
+indicator: [
+{ name: 'Performance', max: 100 },
+{ name: 'Reliability', max: 100 },
+{ name: 'Efficiency', max: 100 },
+{ name: 'Support', max: 100 },
+{ name: 'Innovation', max: 100 }
+],
+axisName: { color: '#fff' }
+},
+series: [{
+type: 'radar',
+data: [
+{ value: [92, 94, 89, 91, 95], name: 'JCB Value Delivery', lineStyle: { color: '#FFD700' }, areaStyle: { color: 'rgba(255, 215, 0, 0.2)' } }
+]
+}]
+};
+customerValueChart.setOption(customerValueOption);
+const investmentAllocationChart = echarts.init(document.getElementById('investmentAllocationChart'));
+const investmentAllocationOption = {
+animation: false,
+title: { text: '5-Year Investment Allocation', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'item', backgroundColor: 'rgba(255,255,255,0.9)' },
+series: [{
+type: 'pie',
+radius: '70%',
+data: [
+{ value: 35, name: 'R&D Innovation' },
+{ value: 25, name: 'Manufacturing' },
+{ value: 20, name: 'Market Expansion' },
+{ value: 15, name: 'Digital Transformation' },
+{ value: 5, name: 'Sustainability' }
+],
+itemStyle: {
+color: function(params) {
+const colors = ['#FFD700', '#FFA500', '#87B5E7', '#8DD3C7', '#FB8F62'];
+return colors[params.dataIndex];
+}
+}
+}]
+};
+investmentAllocationChart.setOption(investmentAllocationOption);
+const revenueProjectionChart = echarts.init(document.getElementById('revenueProjectionChart'));
+const revenueProjectionOption = {
+animation: false,
+title: { text: 'Revenue Growth Projection', textStyle: { color: '#FFD700', fontSize: 14 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+grid: { top: 60, left: 40, right: 40, bottom: 40 },
+xAxis: { type: 'category', data: ['2025', '2026', '2027', '2028', '2029'], axisLabel: { color: '#1f2937' } },
+yAxis: { type: 'value', axisLabel: { color: '#1f2937', formatter: '£{value}B' } },
+series: [{
+type: 'line',
+data: [1.96, 2.18, 2.42, 2.69, 2.8],
+smooth: true,
+lineStyle: { color: '#FFD700', width: 3 },
+areaStyle: { color: 'rgba(255, 215, 0, 0.1)' },
+symbol: 'circle',
+symbolSize: 8
+}]
+};
+revenueProjectionChart.setOption(revenueProjectionOption);
+const kpiDashboard = echarts.init(document.getElementById('kpiDashboard'));
+const kpiDashboardOption = {
+animation: false,
+title: { text: 'KPI Performance Dashboard', textStyle: { color: '#FFD700', fontSize: 16 } },
+tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)' },
+legend: {
+data: ['Revenue (£B)', 'Market Share (%)', 'Customer Satisfaction', 'Innovation Index'],
+textStyle: { color: '#fff' },
+top: 30
+},
+grid: { top: 80, left: 60, right: 40, bottom: 60 },
+xAxis: {
+type: 'category',
+data: ['2024', '2025', '2026', '2027', '2028', '2029'],
+axisLabel: { color: '#1f2937' }
+},
+yAxis: [
+{
+type: 'value',
+name: 'Revenue (£B) / Market Share (%)',
+axisLabel: { color: '#1f2937' },
+nameTextStyle: { color: '#fff' }
+},
+{
+type: 'value',
+name: 'Satisfaction / Innovation (0-10)',
+axisLabel: { color: '#1f2937' },
+nameTextStyle: { color: '#fff' }
+}
+],
+series: [
+{
+name: 'Revenue (£B)',
+type: 'line',
+data: [1.78, 1.96, 2.18, 2.42, 2.69, 2.8],
+smooth: true,
+lineStyle: { color: '#FFD700', width: 3 }
+},
+{
+name: 'Market Share (%)',
+type: 'line',
+data: [16.8, 18.2, 19.8, 21.5, 23.7, 25.3],
+smooth: true,
+lineStyle: { color: '#FFA500', width: 3 }
+},
+{
+name: 'Customer Satisfaction',
+type: 'bar',
+yAxisIndex: 1,
+data: [4.7, 4.72, 4.75, 4.77, 4.79, 4.8],
+itemStyle: { color: '#87B5E7', borderRadius: [4, 4, 0, 0] }
+},
+{
+name: 'Innovation Index',
+type: 'bar',
+yAxisIndex: 1,
+data: [9.2, 9.3, 9.4, 9.5, 9.6, 9.7],
+itemStyle: { color: '#8DD3C7', borderRadius: [4, 4, 0, 0] }
+}
+]
+};
+kpiDashboard.setOption(kpiDashboardOption);
+});
+</script>
+<script id="interactive-script">
+function toggleRow(rowId) {
+const row = document.getElementById(rowId);
+if (row) {
+row.classList.toggle('show');
+}
+}
+function sortTable(columnIndex) {
+const table = document.querySelector('.interactive-table tbody');
+const rows = Array.from(table.querySelectorAll('tr:not(.expandable-content)'));
+rows.sort((a, b) => {
+const aValue = a.cells[columnIndex].textContent.trim();
+const bValue = b.cells[columnIndex].textContent.trim();
+if (columnIndex === 1) {
+return parseFloat(bValue) - parseFloat(aValue);
+}
+return aValue.localeCompare(bValue);
+});
+rows.forEach(row => {
+table.appendChild(row);
+const expandableId = row.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+if (expandableId) {
+const expandableRow = document.getElementById(expandableId);
+if (expandableRow) {
+table.appendChild(expandableRow);
+}
+}
+});
+}
+window.addEventListener('resize', function() {
+const charts = [
+'marketSizeChart', 'regionalChart', 'profitabilityChart',
+'distributionEfficiencyChart', 'innovationROIChart', 'featureRadarChart',
+'marketShareTrendsChart', 'brandPerceptionChart', 'revenueOptimizationChart',
+'tcoChart', 'customerValueChart', 'investmentAllocationChart',
+'revenueProjectionChart', 'kpiDashboard'
+];
+charts.forEach(chartId => {
+const chartElement = document.getElementById(chartId);
+if (chartElement && echarts.getInstanceByDom(chartElement)) {
+echarts.getInstanceByDom(chartElement).resize();
+}
+});
+});
+</script>
+</body>
+</html>
